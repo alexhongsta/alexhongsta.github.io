@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Hong — Mechanical Engineering</title>
+  <meta name="description" content="Alex Hong — mechanical engineering student at Stanford. Research, projects, and work history.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #FAFAF7;
+      --paper-2: #F1F1EC;
+      --ink: #17171A;
+      --ink-soft: #55555C;
+      --accent: #2B4FF0;
+      --hairline: rgba(23, 23, 26, .16);
+      --sans: "Geist", "Helvetica Neue", sans-serif;
+      --mono: "Geist Mono", "Consolas", monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: .76rem;
+      letter-spacing: .07em;
+      color: var(--ink-soft);
+    }
+
+    .skip {
+      position: absolute; left: -9999px; top: 0; z-index: 100;
+      background: var(--ink); color: var(--paper);
+      padding: 10px 18px; font-family: var(--mono); font-size: .8rem;
+    }
+    .skip:focus { left: 0; }
+
+    /* ── Header ── */
+    header { border-bottom: 1px solid var(--hairline); background: var(--paper); }
+    .nav {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      justify-content: space-between; gap: 8px 24px;
+      padding-top: 18px; padding-bottom: 18px;
+    }
+    .brand { font-weight: 700; letter-spacing: -.02em; color: var(--ink); text-decoration: none; font-size: 1.05rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+    nav a {
+      font-family: var(--mono); font-size: .76rem; letter-spacing: .07em;
+      color: var(--ink-soft); text-decoration: none;
+    }
+    nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+    nav a.flip { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero { padding-top: clamp(64px, 10vw, 120px); padding-bottom: clamp(48px, 7vw, 88px); }
+    .hero .kicker { display: block; margin-bottom: 28px; }
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      line-height: 1.02;
+      max-width: 14ch;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      color: var(--accent);
+    }
+    .hero .lede { max-width: 54ch; color: var(--ink-soft); margin-bottom: 36px; }
+    .hero .cta { display: flex; gap: 28px; flex-wrap: wrap; align-items: baseline; }
+    .hero .cta a { font-family: var(--mono); font-size: .82rem; letter-spacing: .06em; }
+
+    /* facts strip */
+    .facts {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .facts li { padding: 22px 24px 22px 0; }
+    .facts li + li { border-left: 1px solid var(--hairline); padding-left: 24px; }
+    @media (max-width: 900px) {
+      .facts { grid-template-columns: 1fr 1fr; }
+      .facts li + li { border-left: none; padding-left: 0; }
+      .facts li:nth-child(even) { border-left: 1px solid var(--hairline); padding-left: 24px; }
+      .facts li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    }
+    @media (max-width: 560px) {
+      .facts { grid-template-columns: 1fr; }
+      .facts li:nth-child(even) { border-left: none; padding-left: 0; }
+      .facts li:nth-child(n+2) { border-top: 1px solid var(--hairline); }
+    }
+    .facts b { display: block; font-size: 1.3rem; font-weight: 600; letter-spacing: -.02em; }
+    .facts span { font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; color: var(--ink-soft); }
+
+    /* ── Sections ── */
+    section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--hairline); }
+    section:last-of-type { border-bottom: none; }
+    .sec {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 24px 48px;
+      align-items: start;
+    }
+    .sec > .label { position: sticky; top: 24px; }
+    .sec h2 {
+      font-size: 1.05rem; font-weight: 600; letter-spacing: -.01em;
+      margin-top: 6px;
+    }
+    .sec .body p, .sec .body ul { max-width: 62ch; }
+    .sec .body > p + p { margin-top: 18px; }
+    .sec .body > p { color: var(--ink-soft); }
+
+    .entry { padding: 22px 0; border-top: 1px solid var(--hairline); }
+    .entry:first-of-type { border-top: none; padding-top: 0; }
+    .entry .line {
+      display: flex; justify-content: space-between; gap: 18px;
+      flex-wrap: wrap; align-items: baseline; margin-bottom: 6px;
+    }
+    .entry h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.015em; }
+    .entry h3 a { color: var(--ink); text-decoration: none; }
+    .entry h3 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+    .entry .sub { font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; color: var(--ink-soft); margin-bottom: 8px; }
+    .entry ul { margin: 8px 0 0 20px; color: var(--ink-soft); }
+    .entry li { margin-bottom: 6px; }
+    .entry .note { color: var(--ink-soft); margin-top: 6px; }
+
+    /* skills */
+    .skills { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+    .skills b { display: block; font-family: var(--mono); font-size: .74rem; letter-spacing: .07em; font-weight: 500; color: var(--ink-soft); margin-bottom: 8px; }
+    .skills span { color: var(--ink); }
+
+    /* contact */
+    .contact .email {
+      display: inline-block;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 600; letter-spacing: -.02em;
+      margin: 10px 0 26px;
+    }
+    .contact .links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .contact .links a { font-family: var(--mono); font-size: .8rem; letter-spacing: .06em; }
+
+    /* figures */
+    .figs {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px 10px;
+      margin-top: 24px;
+    }
+    .figs figure { grid-column: span 6; }
+    .figs .half { grid-column: span 3; }
+    .figs .third { grid-column: span 2; }
+    .figs img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+      background: var(--paper-2);
+      border: 1px solid var(--hairline);
+    }
+    .figs .half img { aspect-ratio: 4 / 3; }
+    .figs .third img, .figs .tall img { aspect-ratio: 3 / 4; }
+    .figs .sq img { aspect-ratio: 1 / 1; object-position: 50% 30%; }
+    .figs { align-items: start; }
+    .figs .render img { aspect-ratio: auto; object-fit: contain; background: #fff; }
+
+    /* 3D viewer + file links */
+    .cad { margin-top: 20px; }
+    .cad-stage {
+      display: none;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--hairline);
+      background: var(--paper-2);
+      cursor: grab;
+      touch-action: none;
+    }
+    .cad-stage:active { cursor: grabbing; }
+    .cad.is-open .cad-stage { display: block; }
+    .cad-stage canvas { display: block; width: 100%; height: 100%; }
+    .cad-bar { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; margin-top: 10px; }
+    .cad-open {
+      font-family: var(--mono); font-size: .78rem; letter-spacing: .06em;
+      color: var(--accent); background: none; border: none; padding: 0; cursor: pointer;
+      text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+    }
+    .cad-open:disabled { color: var(--ink-soft); cursor: progress; }
+    .cad-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .cad-status { font-family: var(--mono); font-size: .7rem; letter-spacing: .05em; color: var(--ink-soft); }
+    .files { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; }
+    .files a { font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; }
+    .figs figcaption {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .05em;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+    @media (max-width: 560px) {
+      .figs .half, .figs .third { grid-column: span 6; }
+      .figs .third img { aspect-ratio: 4 / 3; }
+    }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 18px 0;
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    /* motion: quiet rise on scroll-in */
+    @media (prefers-reduced-motion: no-preference) {
+      .rise { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+      .rise.in { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 760px) {
+      .sec { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .sec > .label { position: static; }
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="assets/js/cad-viewer.js"></script>
+</head>
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Alex Hong</a>
+      <nav aria-label="Main">
+        <a href="#about">ABOUT</a>
+        <a href="#education">EDUCATION</a>
+        <a href="#research">RESEARCH</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#contact">CONTACT</a>
+        <a class="flip" href="hongsta.html">HONGSTA ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="hero wrap">
+      <span class="kicker mono">01 / MECHANICAL ENGINEERING — STANFORD UNIVERSITY</span>
+      <h1>What I've built, and <em>why.</em></h1>
+      <p class="lede">I study mechanical engineering at Stanford, class of 2028. I spent summer 2026 on carbon nanotube synthesis research in the Boies Lab. I build mechanical things: a spring launcher, a stage, and now an aluminum piano.</p>
+      <div class="cta">
+        <a href="#contact">GET IN TOUCH →</a>
+        <a href="assets/docs/Alex_Hong_Resume.pdf">RESUME (PDF) ↗</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <ul class="facts" aria-label="Highlights">
+        <li class="rise"><b>Stanford</b><span>B.S. MECH E, JUNE 2028</span></li>
+        <li class="rise"><b>3.7 GPA</b><span>ENGINEERING COURSEWORK</span></li>
+        <li class="rise"><b>Boies Lab</b><span>CNT RESEARCH, SUMMER 2026</span></li>
+        <li class="rise"><b>216 mg/hr</b><span>CNT PRODUCTION, COUNTERFLOW</span></li>
+      </ul>
+    </div>
+
+    <section id="about">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">02</span>
+          <h2>About</h2>
+        </div>
+        <div class="body rise">
+          <p>I'm from Walnut Creek, California. In summer 2026 I worked on carbon nanotube synthesis in the Boies Lab, running a 1300&nbsp;°C reactor and testing injector configurations. Outside the lab I like projects I can put my hands on: a purely mechanical launcher, a stage built for a party, and an aluminum piano I'm making for ME&nbsp;103.</p>
+          <p>I also produce music and DJ as <a href="hongsta.html">Hongsta</a>, and played lead trumpet with NYO&nbsp;Jazz at Carnegie Hall (2024) and on a European tour under Luis Bonilla (2025). Some of the engineering serves the music directly: I DJ'd from the stage and DJ table I built, and the piano is an instrument.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">03</span>
+          <h2>Education</h2>
+        </div>
+        <div class="body rise">
+          <div class="entry">
+            <div class="line">
+              <h3>Stanford University — B.S. Mechanical Engineering</h3>
+              <span class="mono">2024–2028 (EXPECTED)</span>
+            </div>
+            <ul>
+              <li>GPA 3.7.</li>
+              <li>Coursework: Thermodynamics, Fluid Mechanics, Dynamics, ME&nbsp;102 Product Realization, ME&nbsp;103, Linear Algebra, Multivariable Calculus, Differential Equations.</li>
+              <li>Covered control volume analysis, Bernoulli, dimensional analysis, boundary layer theory, sand casting, and manual milling.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">04</span>
+          <h2>Research</h2>
+        </div>
+        <div class="body rise">
+          <div class="entry">
+            <div class="line">
+              <h3>Summer Undergraduate Researcher — Boies Lab</h3>
+              <span class="mono">JUNE – SEPT 2026</span>
+            </div>
+            <p class="sub">STANFORD SCHOOL OF ENGINEERING</p>
+            <ul>
+              <li>I tested injector configurations in a floating-catalyst CVD reactor that runs at 1300&nbsp;°C. Counterflow injection, versus main-flow, raised carbon nanotube production to 216&nbsp;mg/hr.</li>
+              <li>Found the optimal injection point, 28.3&nbsp;cm, through repeated experimental runs.</li>
+              <li>Designed the custom quartz-tube flange assemblies in Fusion 360: sealing geometry and injector-tube integration for high-temperature service.</li>
+              <li>Worked alongside a PhD collaborator, iterating reactor geometry against experimental results.</li>
+            </ul>
+            <div class="figs">
+              <figure class="half sq">
+                <img src="assets/img/reactor-flange-installed.jpg" width="1200" height="1600" loading="lazy" alt="Stainless steel flange assembly clamped to the ceramic reactor tube, with an injector line entering from the top.">
+                <figcaption>FIG. 4.1 — Flange assembly on the reactor, injector line at top.</figcaption>
+              </figure>
+              <figure class="half sq">
+                <img src="assets/img/flange-injector-loop.jpg" width="1200" height="1600" loading="lazy" alt="Machined steel flange on a lab bench, with a bent stainless tube loop feeding ports on opposite sides.">
+                <figcaption>FIG. 4.2 — Flange with injector feed loop, on the bench.</figcaption>
+              </figure>
+              <figure class="half">
+                <img src="assets/img/flange-cad-top.jpg" width="647" height="554" loading="lazy" alt="Fusion 360 render of the counterflow flange: a round flange with six bolt holes, a stepped central bore, and two side ports.">
+                <figcaption>FIG. 4.3 — Counterflow flange, Fusion 360 model.</figcaption>
+              </figure>
+              <figure class="half">
+                <img src="assets/img/flange-cad-bottom.jpg" width="874" height="697" loading="lazy" alt="Fusion 360 render of the counterflow flange from below, showing the bolt circle and central bore.">
+                <figcaption>FIG. 4.4 — Counterflow flange, underside.</figcaption>
+              </figure>
+            </div>
+            <div class="cad" data-src="assets/cad/counterflow-flange.step" data-label="Rotatable 3D model of the counterflow flange" hidden>
+              <div class="cad-stage"></div>
+              <div class="cad-bar"><button class="cad-open" type="button">VIEW 3D MODEL</button><span class="cad-status" aria-live="polite"></span></div>
+            </div>
+            <div class="files">
+              <a href="assets/cad/counterflow-flange.step" download>CAD (STEP, 150&nbsp;KB) ↓</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">05</span>
+          <h2>Projects</h2>
+        </div>
+        <div class="body rise">
+          <div class="entry">
+            <div class="line">
+              <h3>Custom Aluminum Piano</h3>
+              <span class="mono">FALL 2026 · ME 103 · IN PROGRESS</span>
+            </div>
+            <p class="note">A 20-key MIDI keyboard, E to B (12 white keys, 8 black), made entirely of 356A aluminum. The frame, base, and key blanks are sand cast in the PRL foundry from 3D-printed PLA patterns, then finished on a manual mill. The keys pivot on a Ø.250&nbsp;in stainless rod, and a glass window sits in the back wall.</p>
+            <p class="note">All 12 white keys are cast and machined as one 11&nbsp;in bar, and the 8 black keys as one 4.2&nbsp;in bar, so every key gets the same profile. The bars are sawed apart afterward. All 20 pivot holes are drilled in one setup so they line up on the rod.</p>
+            <p class="note">Writing the operations sequence turned up five things to fix in CAD before printing patterns. The enclosed glass slot can't be sand cast, so it became an open rabbet. The top skin was .044–.056&nbsp;in thick, too thin for the casting to fill, so it goes to about 3/16&nbsp;in. Both pivot holes were blind, so the rod couldn't go in. The key stack had no end clearance, and the screws reached only about .10&nbsp;in into the frame.</p>
+            <p class="note">The BOM comes to $104.84 against a $130 budget. Electronics are a later phase.</p>
+            <div class="figs">
+              <figure class="render">
+                <img src="assets/img/piano-cad-front.jpg" width="1008" height="541" loading="lazy" alt="CAD render of the aluminum piano: a sloped grey frame around 12 light keys and 8 dark keys.">
+                <figcaption>FIG. 5.1 — Assembly, front.</figcaption>
+              </figure>
+              <figure class="half render">
+                <img src="assets/img/piano-cad-exploded.jpg" width="1546" height="1194" loading="lazy" alt="Exploded CAD view: the frame and glass window above the keys on their pivot rod, over the base with four screws below.">
+                <figcaption>FIG. 5.2 — Exploded: frame, glass, keys on the pivot rod, base.</figcaption>
+              </figure>
+              <figure class="half render">
+                <img src="assets/img/piano-cad-back.jpg" width="595" height="297" loading="lazy" alt="CAD render from the back, showing the long glass window set into the back wall.">
+                <figcaption>FIG. 5.3 — Assembly, back, with the glass window.</figcaption>
+              </figure>
+              <figure class="render">
+                <img src="assets/img/piano-op-saw-keys.jpg" width="1266" height="816" loading="lazy" alt="The white-key bar and black-key bar with the saw cuts between keys marked in red.">
+                <figcaption>FIG. 5.4 — OP 40: sawing the cast bars into keys at .900 and .500&nbsp;in pitch. Red is material removed.</figcaption>
+              </figure>
+            </div>
+            <div class="cad" data-src="assets/cad/aluminum-piano.step" data-label="Rotatable 3D model of the aluminum piano assembly" hidden>
+              <div class="cad-stage"></div>
+              <div class="cad-bar"><button class="cad-open" type="button">VIEW 3D MODEL</button><span class="cad-status" aria-live="polite"></span></div>
+            </div>
+            <div class="files">
+              <a href="assets/docs/aluminum-piano-operations-sequence.pdf">OPERATIONS SEQUENCE (PDF) ↗</a>
+              <a href="assets/docs/aluminum-piano-bom.xlsx" download>BOM (XLSX) ↓</a>
+              <a href="assets/cad/aluminum-piano.step" download>CAD (STEP, 1.2&nbsp;MB) ↓</a>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Spring-Powered Ping Pong Launcher</h3>
+              <span class="mono">WINTER 2026 · ME 102</span>
+            </div>
+            <p class="note">A purely mechanical, spring-driven launcher inside a 12&nbsp;×&nbsp;12&nbsp;×&nbsp;24&nbsp;in envelope. It fired through a target board at 5–7&nbsp;ft over a two-minute run. The scored design metric was the static counterweight resisting launch reaction forces — I cut it with geometry instead of added mass, down to [final ballast, lb]. The paper trail: free-body diagrams, force and moment balances, stored-energy calculations, and a dimensioned drawing package with tolerances, BOM, and exploded views. Parts were laser-cut and 3D-printed. The Fusion assembly has six parts: base, barrel, funnel, slider, slot, and shaft.</p>
+            <div class="figs">
+              <figure class="third">
+                <img src="assets/img/launcher-built.jpg" width="1200" height="1600" loading="lazy" alt="The finished white launcher: an angled barrel on a base plate, with the extension spring visible in the firing mechanism.">
+                <figcaption>FIG. 5.5 — Built launcher.</figcaption>
+              </figure>
+              <figure class="third">
+                <img src="assets/img/launcher-built-side.jpg" width="1200" height="1600" loading="lazy" alt="The finished launcher from a second angle, showing the curved side plate with its row of adjustment holes.">
+                <figcaption>FIG. 5.6 — Side plate and spring.</figcaption>
+              </figure>
+              <figure class="third">
+                <img src="assets/img/launcher-cad.jpg" width="561" height="742" loading="lazy" alt="Fusion 360 render of the launcher assembly.">
+                <figcaption>FIG. 5.7 — Fusion 360 assembly.</figcaption>
+              </figure>
+            </div>
+            <div class="cad" data-src="assets/cad/ping-pong-launcher.step" data-label="Rotatable 3D model of the ping pong launcher" hidden>
+              <div class="cad-stage"></div>
+              <div class="cad-bar"><button class="cad-open" type="button">VIEW 3D MODEL</button><span class="cad-status" aria-live="polite"></span></div>
+            </div>
+            <div class="files">
+              <a href="assets/cad/ping-pong-launcher.step" download>CAD (STEP, 1.2&nbsp;MB) ↓</a>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Outdoor Stage Build</h3>
+              <span class="mono">2026 · SIGMA NU SUNSPLASH</span>
+            </div>
+            <p class="note">A wooden stage, DJ table, and tiered platforms for Sigma Nu's Sunsplash, an event with ~1,340 RSVPs. I modeled it in Fusion 360: 17 platforms in four sizes (a 2&nbsp;ft stage, 1&nbsp;ft and standard die tables, and 4&nbsp;ft die tables with rails), 8 fence sections, and the DJ table. I sized the 2×4, 4×4, and plywood members from that model. Then we bought the lumber and built it on site.</p>
+            <p class="note">The aluminum truss over the DJ table was bought, not built. I DJ'd the party from the table.</p>
+            <div class="figs">
+              <figure>
+                <img src="assets/img/stage-finished.jpg" width="1600" height="900" loading="lazy" alt="The finished stage at night under yellow fabric canopies: white-painted tiers around a sand floor, a blue DJ table panel with a painted sun, and truss towers holding a ΣN sign.">
+                <figcaption>FIG. 5.8 — Stage at night, mid-paint.</figcaption>
+              </figure>
+              <figure class="half">
+                <img src="assets/img/stage-cad.jpg" width="1101" height="715" loading="lazy" alt="Fusion 360 render of the U-shaped stage layout: tiered platforms with railings and the DJ table at the center.">
+                <figcaption>FIG. 5.9 — Fusion 360 layout.</figcaption>
+              </figure>
+              <figure class="half">
+                <img src="assets/img/stage-framing.jpg" width="1600" height="900" loading="lazy" alt="Unpainted wooden platforms and railings set up on sand, with the plywood DJ table panel standing at the center.">
+                <figcaption>FIG. 5.10 — Framing on site, before paint.</figcaption>
+              </figure>
+              <figure class="third">
+                <img src="assets/img/stage-lumber.jpg" width="1200" height="1600" loading="lazy" alt="Three people wheeling a cart stacked with lumber and plywood out of a hardware store.">
+                <figcaption>FIG. 5.11 — Lumber run.</figcaption>
+              </figure>
+              <figure class="third">
+                <img src="assets/img/stage-die-table.jpg" width="900" height="1600" loading="lazy" alt="One die table: a plywood top on a wooden leg frame with cross bracing.">
+                <figcaption>FIG. 5.12 — One die table, plywood on a braced frame.</figcaption>
+              </figure>
+              <figure class="third">
+                <img src="assets/img/stage-dj-table.jpg" width="900" height="1600" loading="lazy" alt="The DJ table frame before paint: a slatted wooden top with a tall backboard.">
+                <figcaption>FIG. 5.13 — DJ table, before paint.</figcaption>
+              </figure>
+              <figure class="half tall">
+                <img src="assets/img/stage-dj-set.jpg" width="1200" height="1600" loading="lazy" alt="Alex DJing at the painted blue DJ table between two speakers, under the truss and ΣN sign, with a dense crowd in front.">
+                <figcaption>FIG. 5.14 — DJing the party from the table.</figcaption>
+              </figure>
+              <figure class="half tall">
+                <img src="assets/img/stage-event-day.jpg" width="1600" height="900" loading="lazy" style="object-position: 50% 60%" alt="Event day, seen from behind the DJ table: a large crowd under yellow canopies in front of the house.">
+                <figcaption>FIG. 5.15 — The crowd, from behind the DJ table.</figcaption>
+              </figure>
+            </div>
+            <div class="cad" data-src="assets/cad/stage.step" data-label="Rotatable 3D model of the stage layout" hidden>
+              <div class="cad-stage"></div>
+              <div class="cad-bar"><button class="cad-open" type="button">VIEW 3D MODEL</button><span class="cad-status" aria-live="polite"></span></div>
+            </div>
+            <div class="files">
+              <a href="assets/cad/stage.step" download>CAD (STEP, 320&nbsp;KB) ↓</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">06</span>
+          <h2>Experience</h2>
+        </div>
+        <div class="body rise">
+          <div class="entry">
+            <div class="line">
+              <h3>Machine Learning Intern — Lento Medical</h3>
+              <span class="mono">JUN–AUG 2023 · KATY, TX</span>
+            </div>
+            <ul>
+              <li>Operated CNC machines producing patient-specific knee implant components; inspected and prepared finished parts for shipment to surgical partners.</li>
+              <li>Researched machine learning methods for X-ray analysis and surgical planning for the PtoleKnee implant system.</li>
+            </ul>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Sales Intern — Your Energy Solutions</h3>
+              <span class="mono">JUN–SEP 2025 · LIVERMORE, CA</span>
+            </div>
+            <ul>
+              <li>Learned residential and commercial PV system design, from panel and inverter specification through per-customer ROI and NEM 3.0 incentives.</li>
+              <li>Generated 50+ qualified commercial leads in two months.</li>
+            </ul>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Tech Desk Consultant — Stanford University</h3>
+              <span class="mono">SEP 2025 – PRESENT</span>
+            </div>
+            <ul>
+              <li>Resolve hardware and software issues for students and staff; manage equipment checkout and large-format printing. Six hours a week.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">07</span>
+          <h2>Skills</h2>
+        </div>
+        <div class="body rise">
+          <ul class="skills">
+            <li><b>EXPERIMENTAL</b><span>High-temperature reactor operation, CVD process iteration, design of experiments</span></li>
+            <li><b>ANALYSIS</b><span>Free-body diagrams, force/moment balance, energy analysis, dimensional analysis</span></li>
+            <li><b>CAD &amp; FABRICATION</b><span>Fusion 360, engineering drawings, dimensioning &amp; tolerancing, sand casting &amp; pattern design, manual milling, operations planning, 3D printing, laser cutting, CNC</span></li>
+            <li><b>SOFTWARE</b><span>Python</span></li>
+            <li><b>LANGUAGES</b><span>English (native), Korean (fluent)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">08</span>
+          <h2>Contact</h2>
+        </div>
+        <div class="body rise">
+          <p>Open to internships. Email is fastest.</p>
+          <a class="email" href="mailto:alexjyh@stanford.edu">alexjyh@stanford.edu</a>
+          <div class="links">
+            <a href="https://linkedin.com/in/alexjhong" target="_blank" rel="noopener">LINKEDIN ↗</a>
+            <a href="assets/docs/Alex_Hong_Resume.pdf">RESUME (PDF) ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span class="mono">© 2026 ALEX HONG · WALNUT CREEK / STANFORD, CA</span>
+      <a class="mono" href="hongsta.html" style="color:var(--accent)">ALSO KNOWN AS HONGSTA ↗</a>
+    </div>
+  </footer>
+
+  <script>
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const en of entries) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        }
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.rise').forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll('.rise').forEach((el) => el.classList.add('in'));
+    }
+  </script>
+
+</body>
+</html>

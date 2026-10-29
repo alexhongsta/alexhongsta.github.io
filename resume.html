@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Hong — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @page { size: letter; margin: 0.45in 0.55in; }
+
+    :root {
+      --ink: #17171A;
+      --ink-soft: #4A4A50;
+      --accent: #2B4FF0;
+      --hairline: rgba(23, 23, 26, .22);
+      --sans: "Geist", "Helvetica Neue", sans-serif;
+      --mono: "Geist Mono", "Consolas", monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { background: #FAFAF7; }
+    body {
+      font-family: var(--sans);
+      font-size: 9.1pt;
+      line-height: 1.3;
+      color: var(--ink);
+      background: #fff;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in 0.55in;
+    }
+    @media print {
+      html, body { background: #fff; }
+      body { padding: 0; max-width: none; }
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+
+    header { margin-bottom: 10pt; }
+    h1 { font-size: 20pt; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; }
+    .contact {
+      margin-top: 4pt;
+      font-family: var(--mono);
+      font-size: 7.6pt;
+      letter-spacing: .03em;
+      color: var(--ink-soft);
+    }
+    .contact span + span::before { content: "  ·  "; white-space: pre; }
+
+    section { border-top: 0.75pt solid var(--hairline); padding-top: 4pt; margin-top: 6.5pt; }
+    h2 {
+      font-family: var(--mono);
+      font-size: 7.4pt;
+      font-weight: 500;
+      letter-spacing: .12em;
+      color: var(--ink-soft);
+      margin-bottom: 4pt;
+    }
+
+    .item + .item { margin-top: 4.5pt; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+    h3 { font-size: 9.6pt; font-weight: 600; letter-spacing: -.01em; }
+    h3 .where { font-weight: 400; color: var(--ink-soft); }
+    .when {
+      font-family: var(--mono);
+      font-size: 7.4pt;
+      letter-spacing: .03em;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+    ul { margin: 1.5pt 0 0 11pt; }
+    li { margin-top: 1pt; padding-left: 1pt; }
+    li::marker { color: var(--ink-soft); }
+    p.line { margin-top: 1.5pt; }
+
+    .skills { display: grid; grid-template-columns: 1.05in 1fr; gap: 1.5pt 10pt; }
+    .skills dt { font-family: var(--mono); font-size: 7.4pt; letter-spacing: .05em; color: var(--ink-soft); padding-top: 1pt; }
+
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Alex Hong</h1>
+    <p class="contact">
+      <span>WALNUT CREEK, CA</span><span><a href="mailto:alexjyh@stanford.edu">ALEXJYH@STANFORD.EDU</a></span><span><a href="https://linkedin.com/in/alexjhong">LINKEDIN.COM/IN/ALEXJHONG</a></span><span><a href="https://alexhongsta.github.io">ALEXHONGSTA.GITHUB.IO</a></span>
+    </p>
+  </header>
+
+  <section>
+    <h2>EDUCATION</h2>
+    <div class="item">
+      <div class="row">
+        <h3>Stanford University <span class="where">— B.S. Mechanical Engineering · GPA 3.7</span></h3>
+        <span class="when">EXPECTED JUNE 2028</span>
+      </div>
+      <p class="line">Coursework: Thermodynamics, Fluid Mechanics, Dynamics, ME 102 Product Realization, ME 103, Linear Algebra, Multivariable Calculus, Differential Equations.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>RESEARCH</h2>
+    <div class="item">
+      <div class="row">
+        <h3>Summer Undergraduate Researcher, Boies Lab <span class="where">— Stanford School of Engineering</span></h3>
+        <span class="when">JUNE – SEPT 2026</span>
+      </div>
+      <ul>
+        <li>Compared counterflow and main-flow injection in a 1300 °C floating-catalyst CVD reactor; counterflow raised carbon nanotube production to 216 mg/hr. Found the optimal injection point, 28.3 cm, through repeated runs with a PhD collaborator.</li>
+        <li>Designed quartz-tube flange assemblies in Fusion 360, including sealing geometry and injector-tube integration for high-temperature service.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>ENGINEERING PROJECTS</h2>
+    <div class="item">
+      <div class="row">
+        <h3>Custom Aluminum Piano <span class="where">— ME 103</span></h3>
+        <span class="when">FALL 2026 · IN PROGRESS</span>
+      </div>
+      <ul>
+        <li>20-key MIDI keyboard made entirely of 356A aluminum; frame, base, and key blanks sand cast in the PRL foundry from 3D-printed PLA patterns, then finished on a manual mill.</li>
+        <li>Wrote the operations sequence (.060 machining stock, 2° draft, ×1.013 shrink; all 20 pivot holes drilled in one setup) and found five CAD fixes before pattern-making.</li>
+        <li>Built the BOM from CAD pour volumes: $104.84 estimated against a $130 budget.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="row">
+        <h3>Spring-Powered Ping Pong Launcher <span class="where">— ME 102 Product Realization</span></h3>
+        <span class="when">WINTER 2026</span>
+      </div>
+      <ul>
+        <li>Designed and built a purely mechanical spring launcher in a 12 × 12 × 24 in envelope, firing through a target at 5–7 ft; cut the static counterweight, the primary scored metric, through geometry instead of added mass.</li>
+        <li>Produced free-body diagrams, force/moment and stored-energy calculations, and a dimensioned drawing package with tolerances, BOM, and exploded views; parts laser-cut and 3D-printed.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="row">
+        <h3>Outdoor Stage Build <span class="where">— Sigma Nu Sunsplash</span></h3>
+        <span class="when">2026</span>
+      </div>
+      <ul>
+        <li>Designed a wooden stage, DJ table, and tiered platforms (17 platforms, 8 fence sections) in Fusion 360 for an event with ~1,340 RSVPs; sized 2×4, 4×4, and plywood members, then built it on site with a group. The aluminum truss was purchased. DJ'd the event from the stage.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>EXPERIENCE</h2>
+    <div class="item">
+      <div class="row">
+        <h3>Tech Desk Consultant <span class="where">— Stanford University</span></h3>
+        <span class="when">SEPT 2025 – PRESENT</span>
+      </div>
+      <ul>
+        <li>Resolve hardware and software issues for students and staff; manage equipment checkout and large-format printing (6 hrs/week).</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="row">
+        <h3>Sales Intern <span class="where">— Your Energy Solutions, Livermore, CA</span></h3>
+        <span class="when">JUNE – SEPT 2025</span>
+      </div>
+      <ul>
+        <li>Learned residential and commercial PV system design, from panel and inverter specs through per-customer ROI and NEM 3.0 incentives; generated 50+ qualified commercial leads in two months.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="row">
+        <h3>Machine Learning Intern <span class="where">— Lento Medical, Katy, TX</span></h3>
+        <span class="when">JUNE – AUG 2023</span>
+      </div>
+      <ul>
+        <li>Operated CNC machines producing patient-specific knee implant components; researched machine learning methods for X-ray analysis and surgical planning for the PtoleKnee implant system.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>SKILLS</h2>
+    <dl class="skills">
+      <dt>EXPERIMENTAL</dt><dd>High-temperature reactor operation, CVD process iteration, design of experiments</dd>
+      <dt>ANALYSIS</dt><dd>Free-body diagrams, force/moment balance, energy analysis, dimensional analysis</dd>
+      <dt>CAD &amp; FABRICATION</dt><dd>Fusion 360, engineering drawings, dimensioning and tolerancing, sand casting and pattern design, manual milling, operations planning, 3D printing, laser cutting, CNC</dd>
+      <dt>SOFTWARE</dt><dd>Python</dd>
+      <dt>LANGUAGES</dt><dd>English (native), Korean (fluent)</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>ADDITIONAL</h2>
+    <p>Producer and DJ as Hongsta; self-released album <em>Reaching for the Moon</em> (Aug 2026); opened for Poolside and Twinsick. Lead trumpet: Carnegie Hall with NYO Jazz (2024), European tour under Luis Bonilla (2025), Clark Terry Big Band under Wynton Marsalis (2023). Interests: motorsport, soccer, chess, grilling.</p>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hongsta — Music</title>
+  <meta name="description" content="Hongsta — Alex Hong's music. Producer and DJ: the album Reaching for the Moon, live sets, and bookings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17171A;        /* canvas */
+      --ink-2: #1E1E22;      /* tonal layer */
+      --paper: #FAFAF7;      /* type */
+      --paper-soft: #A6A6AB;
+      --accent: #93A5FF;     /* cobalt, tinted for dark ground */
+      --accent-deep: #2B4FF0;
+      --hairline: rgba(250, 250, 247, .16);
+      --sans: "Geist", "Helvetica Neue", sans-serif;
+      --mono: "Geist Mono", "Consolas", monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: .76rem;
+      letter-spacing: .07em;
+      color: var(--paper-soft);
+    }
+
+    .skip {
+      position: absolute; left: -9999px; top: 0; z-index: 100;
+      background: var(--paper); color: var(--ink);
+      padding: 10px 18px; font-family: var(--mono); font-size: .8rem;
+    }
+    .skip:focus { left: 0; }
+
+    /* ── Header ── */
+    header { border-bottom: 1px solid var(--hairline); }
+    .nav {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      justify-content: space-between; gap: 8px 24px;
+      padding-top: 18px; padding-bottom: 18px;
+    }
+    .brand { font-weight: 700; letter-spacing: -.02em; color: var(--paper); text-decoration: none; font-size: 1.05rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+    nav a {
+      font-family: var(--mono); font-size: .76rem; letter-spacing: .07em;
+      color: var(--paper-soft); text-decoration: none;
+    }
+    nav a:hover { color: var(--paper); text-decoration: underline; text-underline-offset: 4px; }
+    nav a.flip { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero { padding-top: clamp(64px, 10vw, 120px); padding-bottom: clamp(48px, 7vw, 88px); }
+    .hero .kicker { display: block; margin-bottom: 28px; }
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: .96;
+      margin-bottom: 24px;
+    }
+    .hero .sub {
+      font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+      font-weight: 500;
+      letter-spacing: -.015em;
+      margin-bottom: 20px;
+    }
+    .hero .sub em {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .hero .lede { max-width: 54ch; color: var(--paper-soft); margin-bottom: 36px; }
+    .hero .cta { display: flex; gap: 28px; flex-wrap: wrap; }
+    .hero .cta a { font-family: var(--mono); font-size: .82rem; letter-spacing: .06em; }
+
+    /* facts strip */
+    .facts {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .facts li { padding: 22px 24px 22px 0; }
+    .facts li + li { border-left: 1px solid var(--hairline); padding-left: 24px; }
+    @media (max-width: 900px) {
+      .facts { grid-template-columns: 1fr 1fr; }
+      .facts li + li { border-left: none; padding-left: 0; }
+      .facts li:nth-child(even) { border-left: 1px solid var(--hairline); padding-left: 24px; }
+      .facts li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    }
+    @media (max-width: 560px) {
+      .facts { grid-template-columns: 1fr; }
+      .facts li:nth-child(even) { border-left: none; padding-left: 0; }
+      .facts li:nth-child(n+2) { border-top: 1px solid var(--hairline); }
+    }
+    .facts b { display: block; font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; }
+    .facts span { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; color: var(--paper-soft); }
+
+    /* ── Sections ── */
+    section { padding: clamp(56px, 8vw, 96px) 0; border-bottom: 1px solid var(--hairline); }
+    section:last-of-type { border-bottom: none; }
+    .sec { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px 48px; align-items: start; }
+    .sec > .label { position: sticky; top: 24px; }
+    .sec h2 { font-size: 1.05rem; font-weight: 600; letter-spacing: -.01em; margin-top: 6px; }
+    .sec .body p, .sec .body ul { max-width: 62ch; }
+    .sec .body > p + p { margin-top: 16px; }
+    .note { color: var(--paper-soft); }
+    .note + .note { margin-top: 14px; }
+
+    .entry { padding: 22px 0; border-top: 1px solid var(--hairline); }
+    .entry:first-of-type { border-top: none; padding-top: 0; }
+    .entry .line {
+      display: flex; justify-content: space-between; gap: 18px;
+      flex-wrap: wrap; align-items: baseline; margin-bottom: 8px;
+    }
+    .entry h3 { font-size: 1.15rem; font-weight: 600; letter-spacing: -.015em; }
+    .entry h3 em { font-style: italic; }
+
+    .player {
+      display: block; width: 100%; height: 152px; margin-top: 18px;
+      border: 0; border-radius: 12px; background: var(--ink-2);
+    }
+    .player.sc { height: 166px; border-radius: 0; }
+    .listen { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 16px; }
+    .listen a { font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; }
+
+    /* credits list */
+    .credits { list-style: none; }
+    .credits li {
+      display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 4px 20px;
+      padding: 14px 0; border-top: 1px solid var(--hairline);
+    }
+    .credits li:first-child { border-top: none; padding-top: 0; }
+    .credits .yr { font-family: var(--mono); font-size: .78rem; color: var(--paper-soft); padding-top: 3px; }
+
+    /* figures */
+    .figs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px 10px; margin-top: 24px; align-items: start; }
+    .figs figure { grid-column: span 6; }
+    .figs .half { grid-column: span 3; }
+    .figs img {
+      display: block; width: 100%; height: auto; object-fit: cover;
+      aspect-ratio: 16 / 9; background: var(--ink-2); border: 1px solid var(--hairline);
+    }
+    .figs .tall img { aspect-ratio: 3 / 4; }
+    .figs figcaption {
+      font-family: var(--mono); font-size: .7rem; letter-spacing: .05em; line-height: 1.5;
+      color: var(--paper-soft); margin-top: 8px;
+    }
+    @media (max-width: 560px) { .figs .half { grid-column: span 6; } }
+
+    /* booking */
+    .booking .email {
+      display: inline-block;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 600; letter-spacing: -.02em;
+      margin: 10px 0 26px;
+    }
+    .booking .links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .booking .links a { font-family: var(--mono); font-size: .8rem; letter-spacing: .06em; }
+
+    footer { border-top: 1px solid var(--hairline); padding: 18px 0; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    /* motion: quiet rise on scroll-in */
+    @media (prefers-reduced-motion: no-preference) {
+      .rise { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+      .rise.in { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 760px) {
+      .sec { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .sec > .label { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Hongsta</a>
+      <nav aria-label="Main">
+        <a href="#music">MUSIC</a>
+        <a href="#live">LIVE</a>
+        <a href="#trumpet">TRUMPET</a>
+        <a href="#booking">BOOKING</a>
+        <a class="flip" href="alex.html">ALEX HONG ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="hero wrap">
+      <span class="kicker mono">02 / MUSIC — PRODUCER · DJ · BAY AREA</span>
+      <h1>HONGSTA</h1>
+      <p class="sub">Tracks made. Sets <em>played.</em></p>
+      <p class="lede">I'm Alex Hong. I make music and DJ as Hongsta. I've opened for Poolside and Twinsick, and played lead trumpet at Carnegie Hall with NYO Jazz. My first album, <em>Reaching for the Moon</em>, came out in August 2026.</p>
+      <div class="cta">
+        <a href="#music">LISTEN ↓</a>
+        <a href="#booking">BOOK HONGSTA →</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <ul class="facts" aria-label="At a glance">
+        <li class="rise"><b>1 album</b><span>REACHING FOR THE MOON, AUG 2026</span></li>
+        <li class="rise"><b>~1,340 RSVPs</b><span>SIGMA NU SUNSPLASH, 2026</span></li>
+        <li class="rise"><b>Opened for</b><span>POOLSIDE · TWINSICK</span></li>
+        <li class="rise"><b>Carnegie Hall</b><span>~3,000 · LEAD TRUMPET, NYO JAZZ</span></li>
+      </ul>
+    </div>
+
+    <section id="music">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">03</span>
+          <h2>Music</h2>
+        </div>
+        <div class="body rise">
+          <div class="entry">
+            <div class="line">
+              <h3><em>Reaching for the Moon</em></h3>
+              <span class="mono">ALBUM · SELF-RELEASED · AUG 2026</span>
+            </div>
+            <p class="note">My first album, self-released.</p>
+            <iframe class="player" title="Reaching for the Moon on Spotify" src="https://open.spotify.com/embed/album/6gcKLiIRmdMIJRQFDCFrw4?theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <div class="listen">
+              <a href="https://open.spotify.com/album/6gcKLiIRmdMIJRQFDCFrw4">SPOTIFY ↗</a>
+              <a href="https://soundcloud.com/hongstaa/sets/reaching-for-the-moon">SOUNDCLOUD ↗</a>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Contest Me (Original Mix)</h3>
+              <span class="mono">UNRELEASED · SOUNDCLOUD</span>
+            </div>
+            <p class="note">A track that isn't out yet.</p>
+            <iframe class="player sc" title="Contest Me (Original Mix) on SoundCloud" src="https://w.soundcloud.com/player/?visual=true&amp;url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2417178345&amp;show_artwork=true&amp;show_comments=false&amp;secret_token=s-PQgYmG1rFhI" loading="lazy" allow="autoplay; encrypted-media"></iframe>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>More on SoundCloud</h3>
+              <span class="mono">SOUNDCLOUD.COM/HONGSTAA</span>
+            </div>
+            <p class="note">Other tracks and mixes are on my <a href="https://soundcloud.com/hongstaa">SoundCloud</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="live">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">04</span>
+          <h2>Live</h2>
+        </div>
+        <div class="body rise">
+          <div class="entry">
+            <div class="line">
+              <h3>Sigma Nu Sunsplash</h3>
+              <span class="mono">2026 · STANFORD, CA · ~1,340 RSVPS</span>
+            </div>
+            <p class="note">I DJ'd the party from a stage and DJ table I designed in Fusion 360 and built with a group. The build is on the <a href="alex.html#projects">engineering side</a>.</p>
+            <div class="figs">
+              <figure class="half tall">
+                <img src="assets/img/stage-dj-set.jpg" width="1200" height="1600" loading="lazy" alt="Alex DJing at the painted blue DJ table between two speakers, under the truss and ΣN sign, with a dense crowd in front.">
+                <figcaption>FIG. 4.1 — At the table.</figcaption>
+              </figure>
+              <figure class="half tall">
+                <img src="assets/img/stage-event-day.jpg" width="1600" height="900" loading="lazy" style="object-position: 50% 60%" alt="The crowd seen from behind the DJ table, under yellow canopies in front of the house.">
+                <figcaption>FIG. 4.2 — The crowd, from behind the table.</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/img/stage-finished.jpg" width="1600" height="900" loading="lazy" alt="The stage at night under yellow fabric canopies, with the blue DJ table panel and a ΣN sign on the truss.">
+                <figcaption>FIG. 4.3 — The stage at night, mid-paint.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Opened for Poolside</h3>
+              <span class="mono">FEB 2026 · NODE OPENING PARTY · ~300</span>
+            </div>
+            <div class="figs">
+              <figure>
+                <img src="assets/img/live-poolside-node.jpg" width="1600" height="1066" loading="lazy" alt="Alex DJing alone on Pioneer decks between two speakers, in front of a long backlit wall of small illustrated faces.">
+                <figcaption>FIG. 4.4 — NODE opening party.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Monroe</h3>
+              <span class="mono">FEB 2026 · SAN FRANCISCO · ~150</span>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Opened for Twinsick</h3>
+              <span class="mono">JAN 2026 · PRIVATE EVENT · 500+</span>
+            </div>
+            <div class="figs">
+              <figure class="half tall">
+                <img src="assets/img/live-twinsick.jpg" width="1200" height="1600" loading="lazy" alt="Two DJs laughing behind a row of Pioneer CDJs, in front of a bright LED wall.">
+                <figcaption>FIG. 4.5 — Behind the decks at the Twinsick show.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="line">
+              <h3>Sigma Nu</h3>
+              <span class="mono">STANFORD, CA · 10+ SETS</span>
+            </div>
+            <p class="note">More than ten sets at Sigma Nu parties, besides Sunsplash.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trumpet">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">05</span>
+          <h2>Trumpet</h2>
+        </div>
+        <div class="body rise">
+          <p class="note">Lead trumpet.</p>
+          <ul class="credits" style="margin-top: 22px;">
+            <li><span class="yr">2025</span><span>European tour under Luis Bonilla</span></li>
+            <li><span class="yr">2024</span><span>Carnegie Hall with NYO Jazz, ~3,000 audience</span></li>
+            <li><span class="yr">2023</span><span>Clark Terry Big Band under Wynton Marsalis</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking" class="booking">
+      <div class="wrap sec">
+        <div class="label">
+          <span class="mono">06</span>
+          <h2>Booking</h2>
+        </div>
+        <div class="body rise">
+          <p class="note">For bookings, email me with the date, venue, and set length.</p>
+          <a class="email" href="mailto:hongstamgmt@gmail.com?subject=Booking%20inquiry%20%E2%80%94%20Hongsta">hongstamgmt@gmail.com</a>
+          <div class="links">
+            <a href="https://linktr.ee/hongsta_">INSTAGRAM + LINKS ↗</a>
+            <a href="https://soundcloud.com/hongstaa">SOUNDCLOUD ↗</a>
+            <a href="https://open.spotify.com/album/6gcKLiIRmdMIJRQFDCFrw4">SPOTIFY ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span class="mono">© 2026 HONGSTA</span>
+      <a class="mono" href="alex.html">BY DAY — ALEX HONG ↗</a>
+    </div>
+  </footer>
+
+  <script>
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const en of entries) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        }
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.rise').forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll('.rise').forEach((el) => el.classList.add('in'));
+    }
+  </script>
+
+</body>
+</html>
