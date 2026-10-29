@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Hong — Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @page { size: 11in 8.5in; margin: 0; }
+
+    :root {
+      --paper: #FAFAF7;
+      --ink: #17171A;
+      --ink-soft: #4E4E55;
+      --accent: #2B4FF0;
+      --hairline: rgba(23, 23, 26, .18);
+      --sans: "Geist", "Helvetica Neue", sans-serif;
+      --mono: "Geist Mono", "Consolas", monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: #DADAD4; }
+    body { font-family: var(--sans); color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: var(--accent); text-decoration: none; }
+
+    .page {
+      width: 11in; height: 8.5in;
+      padding: 0.5in 0.55in 0.45in;
+      background: var(--paper);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 0.22in;
+      overflow: hidden;
+      break-after: page;
+      margin: 0.3in auto;
+    }
+    .page:last-child { break-after: auto; }
+    @media print {
+      html { background: none; }
+      .page { margin: 0; }
+    }
+
+    .mono { font-family: var(--mono); letter-spacing: .06em; }
+    .top, .bottom {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 7.5pt; letter-spacing: .07em; color: var(--ink-soft);
+    }
+    .top { border-bottom: 0.75pt solid var(--hairline); padding-bottom: 0.08in; }
+    .bottom { border-top: 0.75pt solid var(--hairline); padding-top: 0.08in; }
+
+    /* project spread: text column + figure field */
+    .spread { display: grid; grid-template-columns: 3.35in minmax(0, 1fr); gap: 0.4in; min-height: 0; }
+    .text { display: flex; flex-direction: column; min-height: 0; }
+    .num { font-family: var(--mono); font-size: 8pt; letter-spacing: .08em; color: var(--ink-soft); margin-bottom: 0.1in; }
+    h2 { font-size: 22pt; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 0.08in; }
+    .meta { font-family: var(--mono); font-size: 7.6pt; letter-spacing: .06em; color: var(--ink-soft); margin-bottom: 0.18in; }
+    .text p { font-size: 9.6pt; line-height: 1.5; color: #2A2A2F; }
+    .text p + p { margin-top: 0.1in; }
+    .text ul { font-size: 9.6pt; line-height: 1.45; color: #2A2A2F; margin-left: 0.15in; }
+    .text li + li { margin-top: 0.06in; }
+    .files { margin-top: auto; padding-top: 0.15in; display: flex; flex-direction: column; gap: 0.04in; }
+    .files a, .files span { font-family: var(--mono); font-size: 7.4pt; letter-spacing: .05em; }
+    .files span { color: var(--ink-soft); }
+
+    .field { display: grid; gap: 0.12in; min-height: 0; }
+    figure { display: flex; flex-direction: column; min-height: 0; }
+    figure img {
+      flex: 1; min-height: 0; width: 100%; object-fit: cover;
+      border: 0.75pt solid var(--hairline); background: #fff; display: block;
+    }
+    figure.fit img { object-fit: contain; }
+    figcaption { font-family: var(--mono); font-size: 6.8pt; letter-spacing: .04em; color: var(--ink-soft); margin-top: 0.05in; line-height: 1.35; }
+
+    /* cover */
+    .cover { display: grid; grid-template-columns: 4.3in minmax(0, 1fr); gap: 0.45in; min-height: 0; }
+    .cover h1 { font-size: 46pt; font-weight: 700; letter-spacing: -.04em; line-height: .98; margin: 0.35in 0 0.16in; }
+    .cover h1 em { font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 500; letter-spacing: -.01em; color: var(--accent); }
+    .cover .lede { font-size: 10.5pt; line-height: 1.5; color: #2A2A2F; max-width: 3.9in; }
+    .cover .contact { margin-top: 0.25in; display: flex; flex-direction: column; gap: 0.05in; font-family: var(--mono); font-size: 8pt; letter-spacing: .05em; }
+    .toc { list-style: none; margin-top: auto; border-top: 0.75pt solid var(--hairline); }
+    .toc li { display: grid; grid-template-columns: 0.4in 1fr auto; padding: 0.07in 0; border-bottom: 0.75pt solid var(--hairline); font-size: 9.5pt; }
+    .toc .n, .toc .pg { font-family: var(--mono); font-size: 7.6pt; letter-spacing: .06em; color: var(--ink-soft); padding-top: 1.5pt; }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <section class="page">
+    <div class="top"><span>ENGINEERING PORTFOLIO</span><span>2026</span></div>
+    <div class="cover">
+      <div class="text">
+        <span class="num">MECHANICAL ENGINEERING — STANFORD UNIVERSITY, CLASS OF 2028</span>
+        <h1>Alex Hong</h1>
+        <p class="lede">I study mechanical engineering at Stanford. In summer 2026 I worked on carbon nanotube synthesis in the Boies Lab. I like projects I can put my hands on: a purely mechanical launcher, a stage built for a party, and an aluminum piano I'm making for ME&nbsp;103.</p>
+        <div class="contact">
+          <a href="mailto:alexjyh@stanford.edu">ALEXJYH@STANFORD.EDU</a>
+          <a href="https://linkedin.com/in/alexjhong">LINKEDIN.COM/IN/ALEXJHONG</a>
+          <a href="https://alexhongsta.github.io/alex.html">ALEXHONGSTA.GITHUB.IO — 3D MODELS AND CAD FILES</a>
+        </div>
+        <ol class="toc">
+          <li><span class="n">01</span><span>Boies Lab — CNT synthesis research</span><span class="pg">P. 2</span></li>
+          <li><span class="n">02</span><span>Custom Aluminum Piano — ME 103</span><span class="pg">P. 3</span></li>
+          <li><span class="n">03</span><span>Spring-Powered Ping Pong Launcher — ME 102</span><span class="pg">P. 4</span></li>
+          <li><span class="n">04</span><span>Outdoor Stage Build</span><span class="pg">P. 5</span></li>
+        </ol>
+      </div>
+      <div class="field" style="grid-template-rows: minmax(0, 1fr);">
+        <figure class="fit">
+          <img src="assets/img/piano-cad-exploded.jpg" alt="Exploded CAD view of the aluminum piano.">
+          <figcaption>Custom Aluminum Piano, exploded: frame, glass window, 20 keys on the pivot rod, base.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="bottom"><span>ALEX HONG</span><span>1 / 5</span></div>
+  </section>
+
+  <!-- 01 RESEARCH -->
+  <section class="page">
+    <div class="top"><span>01 / RESEARCH</span><span>ALEX HONG — ENGINEERING PORTFOLIO</span></div>
+    <div class="spread">
+      <div class="text">
+        <span class="num">01</span>
+        <h2>Boies Lab</h2>
+        <p class="meta">SUMMER UNDERGRADUATE RESEARCHER<br>JUNE – SEPT 2026<br>STANFORD SCHOOL OF ENGINEERING</p>
+        <ul>
+          <li>I tested injector configurations in a floating-catalyst CVD reactor that runs at 1300&nbsp;°C. Counterflow injection, versus main-flow, raised carbon nanotube production to 216&nbsp;mg/hr.</li>
+          <li>Found the optimal injection point, 28.3&nbsp;cm, through repeated experimental runs.</li>
+          <li>Designed the custom quartz-tube flange assemblies in Fusion 360: sealing geometry and injector-tube integration for high-temperature service.</li>
+          <li>Worked alongside a PhD collaborator, iterating reactor geometry against experimental results.</li>
+        </ul>
+        <div class="files">
+          <span>3D MODEL + STEP FILE:</span>
+          <a href="https://alexhongsta.github.io/alex.html#research">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#RESEARCH</a>
+        </div>
+      </div>
+      <div class="field" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1.25fr 1fr;">
+        <figure>
+          <img src="assets/img/reactor-flange-installed.jpg" style="object-position: 50% 30%" alt="Flange assembly clamped to the reactor tube.">
+          <figcaption>Flange assembly on the reactor, injector line at top.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/flange-injector-loop.jpg" style="object-position: 50% 35%" alt="Flange with injector feed loop on a lab bench.">
+          <figcaption>Flange with injector feed loop, on the bench.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/flange-cad-top.jpg" alt="Fusion 360 render of the counterflow flange.">
+          <figcaption>Counterflow flange, Fusion 360 model.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/flange-cad-bottom.jpg" alt="Fusion 360 render of the counterflow flange from below.">
+          <figcaption>Counterflow flange, underside.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="bottom"><span>ALEXHONGSTA.GITHUB.IO</span><span>2 / 5</span></div>
+  </section>
+
+  <!-- 02 PIANO -->
+  <section class="page">
+    <div class="top"><span>02 / PROJECTS</span><span>ALEX HONG — ENGINEERING PORTFOLIO</span></div>
+    <div class="spread">
+      <div class="text">
+        <span class="num">02</span>
+        <h2>Custom Aluminum Piano</h2>
+        <p class="meta">ME 103 · FALL 2026 · IN PROGRESS</p>
+        <p>A 20-key MIDI keyboard, E to B (12 white keys, 8 black), made entirely of 356A aluminum. The frame, base, and key blanks are sand cast in the PRL foundry from 3D-printed PLA patterns, then finished on a manual mill. The keys pivot on a Ø.250&nbsp;in stainless rod, and a glass window sits in the back wall.</p>
+        <p>All 12 white keys are cast and machined as one 11&nbsp;in bar, and the 8 black keys as one 4.2&nbsp;in bar, so every key gets the same profile. The bars are sawed apart afterward. All 20 pivot holes are drilled in one setup so they line up on the rod.</p>
+        <p>Writing the operations sequence turned up five things to fix in CAD before printing patterns. The enclosed glass slot can't be sand cast, so it became an open rabbet. The top skin was .044–.056&nbsp;in thick, too thin for the casting to fill. Both pivot holes were blind, so the rod couldn't go in. The key stack had no end clearance, and the screws reached only about .10&nbsp;in into the frame.</p>
+        <p>The BOM comes to $104.84 against a $130 budget. Electronics are a later phase.</p>
+        <div class="files">
+          <span>OPERATIONS SEQUENCE, BOM, 3D MODEL, STEP FILE:</span>
+          <a href="https://alexhongsta.github.io/alex.html#projects">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#PROJECTS</a>
+        </div>
+      </div>
+      <div class="field" style="grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr;">
+        <figure class="fit">
+          <img src="assets/img/piano-cad-front.jpg" alt="CAD render of the aluminum piano from the front.">
+          <figcaption>Assembly, front.</figcaption>
+        </figure>
+        <figure class="fit">
+          <img src="assets/img/piano-cad-back.jpg" alt="CAD render from the back with the glass window.">
+          <figcaption>Assembly, back, with the glass window.</figcaption>
+        </figure>
+        <figure class="fit" style="grid-column: 1 / -1;">
+          <img src="assets/img/piano-op-saw-keys.jpg" alt="Key bars with saw cuts marked in red.">
+          <figcaption>OP 40: sawing the cast bars into keys at .900 and .500&nbsp;in pitch. Red is material removed.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="bottom"><span>ALEXHONGSTA.GITHUB.IO</span><span>3 / 5</span></div>
+  </section>
+
+  <!-- 03 LAUNCHER -->
+  <section class="page">
+    <div class="top"><span>03 / PROJECTS</span><span>ALEX HONG — ENGINEERING PORTFOLIO</span></div>
+    <div class="spread">
+      <div class="text">
+        <span class="num">03</span>
+        <h2>Spring-Powered Ping Pong Launcher</h2>
+        <p class="meta">ME 102 PRODUCT REALIZATION · WINTER 2026</p>
+        <p>A purely mechanical, spring-driven launcher inside a 12&nbsp;×&nbsp;12&nbsp;×&nbsp;24&nbsp;in envelope. It fired through a target board at 5–7&nbsp;ft over a two-minute run.</p>
+        <p>The scored design metric was the static counterweight resisting launch reaction forces. I cut it with geometry instead of added mass.</p>
+        <p>The paper trail: free-body diagrams, force and moment balances, stored-energy calculations, and a dimensioned drawing package with tolerances, BOM, and exploded views. Parts were laser-cut and 3D-printed. The Fusion assembly has six parts: base, barrel, funnel, slider, slot, and shaft.</p>
+        <div class="files">
+          <span>3D MODEL + STEP FILE:</span>
+          <a href="https://alexhongsta.github.io/alex.html#projects">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#PROJECTS</a>
+        </div>
+      </div>
+      <div class="field" style="grid-template-columns: 1.15fr 1fr; grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);">
+        <figure style="grid-row: span 2;">
+          <img src="assets/img/launcher-built.jpg" alt="The finished launcher.">
+          <figcaption>Built launcher.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/launcher-built-side.jpg" style="object-position: 50% 62%" alt="The launcher from a second angle.">
+          <figcaption>Side plate and spring.</figcaption>
+        </figure>
+        <figure class="fit">
+          <img src="assets/img/launcher-cad.jpg" style="background: #B2B2B2" alt="Fusion 360 render of the launcher.">
+          <figcaption>Fusion 360 assembly.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="bottom"><span>ALEXHONGSTA.GITHUB.IO</span><span>4 / 5</span></div>
+  </section>
+
+  <!-- 04 STAGE -->
+  <section class="page">
+    <div class="top"><span>04 / PROJECTS</span><span>ALEX HONG — ENGINEERING PORTFOLIO</span></div>
+    <div class="spread">
+      <div class="text">
+        <span class="num">04</span>
+        <h2>Outdoor Stage Build</h2>
+        <p class="meta">SIGMA NU SUNSPLASH · 2026 · ~1,340 RSVPS</p>
+        <p>A wooden stage, DJ table, and tiered platforms for Sigma Nu's Sunsplash. I modeled it in Fusion 360: 17 platforms in four sizes (a 2&nbsp;ft stage, 1&nbsp;ft and standard die tables, and 4&nbsp;ft die tables with rails), 8 fence sections, and the DJ table.</p>
+        <p>I sized the 2×4, 4×4, and plywood members from that model. Then we bought the lumber and built it on site.</p>
+        <p>The aluminum truss over the DJ table was bought, not built. I DJ'd the party from the table.</p>
+        <div class="files">
+          <span>3D MODEL + STEP FILE:</span>
+          <a href="https://alexhongsta.github.io/alex.html#projects">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#PROJECTS</a>
+        </div>
+      </div>
+      <div class="field" style="grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1.15fr 1fr;">
+        <figure style="grid-column: span 2;">
+          <img src="assets/img/stage-finished.jpg" alt="The stage at night under yellow canopies.">
+          <figcaption>Stage at night, mid-paint.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/stage-dj-set.jpg" style="object-position: 50% 55%" alt="Alex DJing at the table with a crowd in front.">
+          <figcaption>DJing the party from the table.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/stage-cad.jpg" alt="Fusion 360 layout of the stage.">
+          <figcaption>Fusion 360 layout.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/stage-framing.jpg" alt="Unpainted platforms on site.">
+          <figcaption>Framing on site, before paint.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/stage-die-table.jpg" style="object-position: 50% 40%" alt="One die table, plywood on a braced frame.">
+          <figcaption>One die table, plywood on a braced frame.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="bottom"><span>ALEXHONGSTA.GITHUB.IO</span><span>5 / 5</span></div>
+  </section>
+
+</body>
+</html>
