@@ -82,8 +82,20 @@
     .toc { list-style: none; margin-top: auto; border-top: 0.75pt solid var(--hairline); }
     .toc li { display: grid; grid-template-columns: 0.4in 1fr auto; padding: 0.07in 0; border-bottom: 0.75pt solid var(--hairline); font-size: 9.5pt; }
     .toc .n, .toc .pg { font-family: var(--mono); font-size: 7.6pt; letter-spacing: .06em; color: var(--ink-soft); padding-top: 1.5pt; }
-  </style>
-</head>
+    /* labeled blocks + schematic */
+    .blocks { font-size: 9.1pt; line-height: 1.42; color: #2A2A2F; margin-top: 0.06in; }
+    .blocks > div { display: grid; grid-template-columns: 0.95in minmax(0, 1fr); gap: 0.1in; padding: 0.07in 0; border-top: 0.75pt solid var(--hairline); }
+    .blocks > div:first-child { border-top: none; }
+    .blocks dt { font-family: var(--mono); font-size: 6.8pt; letter-spacing: .07em; color: var(--ink-soft); padding-top: 1.5pt; }
+    .blocks dd ol { margin: 0.04in 0 0 0.16in; }
+    .blocks dd li + li { margin-top: 0.02in; }
+    .text > p + .blocks { margin-top: 0.12in; }
+    .schematic { border: 0.75pt solid var(--hairline); background: #fff; padding: 0.08in 0.1in 0.04in; }
+    .schematic svg { display: block; width: 100%; height: auto; }
+    .schematic text { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; fill: var(--ink-soft); }
+    .schematic .ttl { fill: var(--ink); font-size: 11.5px; }
+    .schematic .acc { fill: var(--accent); }
+  </style></head>
 <body>
 
   <!-- COVER -->
@@ -93,7 +105,7 @@
       <div class="text">
         <span class="num">MECHANICAL ENGINEERING — STANFORD UNIVERSITY, CLASS OF 2028</span>
         <h1>Alex Hong</h1>
-        <p class="lede">I study mechanical engineering at Stanford. In summer 2026 I worked on carbon nanotube synthesis in the Boies Lab. I like projects I can put my hands on: a purely mechanical launcher, a stage built for a party, and an aluminum piano I'm making for ME&nbsp;103.</p>
+        <p class="lede">Mechanical engineering at Stanford. High-temperature lab hardware, casting, and machining. In summer 2026 I tested injector configurations on a 1300&nbsp;°C carbon nanotube reactor in the Boies Lab; now I'm designing a cast-aluminum keyboard for ME&nbsp;103.</p>
         <div class="contact">
           <a href="mailto:alexjyh@stanford.edu">ALEXJYH@STANFORD.EDU</a>
           <a href="https://linkedin.com/in/alexjhong">LINKEDIN.COM/IN/ALEXJHONG</a>
@@ -124,33 +136,74 @@
         <span class="num">01</span>
         <h2>Boies Lab</h2>
         <p class="meta">SUMMER UNDERGRADUATE RESEARCHER<br>JUNE – SEPT 2026<br>STANFORD SCHOOL OF ENGINEERING</p>
-        <ul>
-          <li>I tested injector configurations in a floating-catalyst CVD reactor that runs at 1300&nbsp;°C. Counterflow injection, versus main-flow, raised carbon nanotube production to 216&nbsp;mg/hr.</li>
-          <li>Found the optimal injection point, 28.3&nbsp;cm, through repeated experimental runs.</li>
-          <li>Designed the custom quartz-tube flange assemblies in Fusion 360: sealing geometry and injector-tube integration for high-temperature service.</li>
-          <li>Worked alongside a PhD collaborator, iterating reactor geometry against experimental results.</li>
-        </ul>
+        <p>The Boies Lab makes carbon nanotubes in a floating-catalyst CVD reactor: gas flows through a tube inside a 1300&nbsp;°C furnace, and the nanotubes form in the gas stream. My question was whether injecting against that flow (counterflow) instead of with it (main-flow) changes how much the reactor produces, and where along the tube the injector should sit.</p>
+        <dl class="blocks">
+          <div><dt>WHAT I DID</dt><dd>Ran repeated experiments with a PhD collaborator, comparing counterflow and main-flow injection and moving the injection point along the tube.</dd></div>
+          <div><dt>RESULT</dt><dd>Counterflow injection raised CNT production to 216&nbsp;mg/hr. The best injection point was 28.3&nbsp;cm.</dd></div>
+          <div><dt>HARDWARE</dt><dd>Designed the quartz-tube flange assemblies in Fusion 360: sealing geometry and injector-tube integration for high-temperature service. The design builds on the lab's earlier Flange&nbsp;v2.</dd></div>
+        </dl>
         <div class="files">
           <span>3D MODEL + STEP FILE:</span>
           <a href="https://alexhongsta.github.io/alex.html#research">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#RESEARCH</a>
         </div>
       </div>
-      <div class="field" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1.25fr 1fr;">
+      <div class="field" style="grid-template-columns: 1fr 1fr; grid-template-rows: auto minmax(0, 1fr);">
+        <figure style="grid-column: 1 / -1;">
+          <div class="schematic">
+            <svg viewBox="0 0 760 300" role="img" aria-labelledby="sx-title sx-desc">
+                    <title id="sx-title">Reactor schematic: main-flow versus counterflow injection</title>
+                    <desc id="sx-desc">Two copies of a horizontal reactor tube with gas flowing left to right through a furnace hot zone. In main-flow, the injector enters from the inlet end and injects in the direction of the gas flow. In counterflow, the injector enters from the outlet end and injects against the gas flow, with its tip at the 28.3 cm injection point.</desc>
+                    <defs>
+                      <marker id="ah-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#55555C"/></marker>
+                      <marker id="ah-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2B4FF0"/></marker>
+                    </defs>
+
+                    <!-- A: main-flow -->
+                    <text class="ttl" x="20" y="22">A — MAIN-FLOW: INJECTS WITH THE GAS FLOW</text>
+                    <rect x="260" y="44" width="260" height="72" fill="#F1F1EC" stroke="#17171A" stroke-width="1"/>
+                    <text x="390" y="132" text-anchor="middle">FURNACE HOT ZONE · 1300 °C</text>
+                    <line x1="60" y1="62" x2="700" y2="62" stroke="#17171A" stroke-width="1.5"/>
+                    <line x1="60" y1="98" x2="700" y2="98" stroke="#17171A" stroke-width="1.5"/>
+                    <rect x="52" y="54" width="8" height="52" fill="#17171A"/>
+                    <rect x="700" y="54" width="8" height="52" fill="#17171A"/>
+                    <line x1="8" y1="80" x2="46" y2="80" stroke="#55555C" stroke-width="1.2" marker-end="url(#ah-ink)"/>
+                    <text x="8" y="72">IN</text>
+                    <line x1="714" y1="80" x2="752" y2="80" stroke="#55555C" stroke-width="1.2" marker-end="url(#ah-ink)"/>
+                    <text x="716" y="72">OUT</text>
+                    <line x1="560" y1="74" x2="640" y2="74" stroke="#55555C" stroke-width="1" marker-end="url(#ah-ink)"/>
+                    <text x="560" y="114">GAS FLOW</text>
+                    <line x1="24" y1="86" x2="290" y2="86" stroke="#2B4FF0" stroke-width="2.2" marker-end="url(#ah-acc)"/>
+                    <text class="acc" x="70" y="114">INJECTOR</text>
+
+                    <!-- B: counterflow -->
+                    <text class="ttl" x="20" y="172">B — COUNTERFLOW: INJECTS AGAINST THE GAS FLOW</text>
+                    <rect x="260" y="194" width="260" height="72" fill="#F1F1EC" stroke="#17171A" stroke-width="1"/>
+                    <text x="390" y="282" text-anchor="middle">FURNACE HOT ZONE · 1300 °C</text>
+                    <line x1="60" y1="212" x2="700" y2="212" stroke="#17171A" stroke-width="1.5"/>
+                    <line x1="60" y1="248" x2="700" y2="248" stroke="#17171A" stroke-width="1.5"/>
+                    <rect x="52" y="204" width="8" height="52" fill="#17171A"/>
+                    <rect x="700" y="204" width="8" height="52" fill="#17171A"/>
+                    <line x1="8" y1="230" x2="46" y2="230" stroke="#55555C" stroke-width="1.2" marker-end="url(#ah-ink)"/>
+                    <text x="8" y="222">IN</text>
+                    <line x1="714" y1="230" x2="752" y2="230" stroke="#55555C" stroke-width="1.2" marker-end="url(#ah-ink)"/>
+                    <text x="716" y="222">OUT</text>
+                    <line x1="90" y1="224" x2="170" y2="224" stroke="#55555C" stroke-width="1" marker-end="url(#ah-ink)"/>
+                    <text x="90" y="264">GAS FLOW</text>
+                    <line x1="736" y1="236" x2="300" y2="236" stroke="#2B4FF0" stroke-width="2.2" marker-end="url(#ah-acc)"/>
+                    <text class="acc" x="600" y="264">INJECTOR</text>
+                    <line x1="300" y1="200" x2="300" y2="260" stroke="#2B4FF0" stroke-width="1" stroke-dasharray="3 3"/>
+                    <text class="acc" x="300" y="190" text-anchor="middle">INJECTION POINT · 28.3 CM</text>
+                  </svg>
+          </div>
+          <figcaption>Reactor schematic, not to scale. Gas flows left to right; the blue line is the injector.</figcaption>
+        </figure>
         <figure>
-          <img src="assets/img/reactor-flange-installed.jpg" style="object-position: 50% 30%" alt="Flange assembly clamped to the reactor tube.">
+          <img src="assets/img/reactor-flange-installed.jpg" style="object-position: 50% 32%" alt="Flange assembly clamped to the reactor tube.">
           <figcaption>Flange assembly on the reactor, injector line at top.</figcaption>
         </figure>
         <figure>
           <img src="assets/img/flange-injector-loop.jpg" style="object-position: 50% 35%" alt="Flange with injector feed loop on a lab bench.">
           <figcaption>Flange with injector feed loop, on the bench.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/flange-cad-top.jpg" alt="Fusion 360 render of the counterflow flange.">
-          <figcaption>Counterflow flange, Fusion 360 model.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/flange-cad-bottom.jpg" alt="Fusion 360 render of the counterflow flange from below.">
-          <figcaption>Counterflow flange, underside.</figcaption>
         </figure>
       </div>
     </div>
@@ -160,15 +213,25 @@
   <!-- 02 PIANO -->
   <section class="page">
     <div class="top"><span>02 / PROJECTS</span><span>ALEX HONG — ENGINEERING PORTFOLIO</span></div>
-    <div class="spread">
+    <div class="spread" style="grid-template-columns: 4.45in minmax(0, 1fr);">
       <div class="text">
         <span class="num">02</span>
         <h2>Custom Aluminum Piano</h2>
         <p class="meta">ME 103 · FALL 2026 · IN PROGRESS</p>
-        <p>A 20-key MIDI keyboard, E to B (12 white keys, 8 black), made entirely of 356A aluminum. The frame, base, and key blanks are sand cast in the PRL foundry from 3D-printed PLA patterns, then finished on a manual mill. The keys pivot on a Ø.250&nbsp;in stainless rod, and a glass window sits in the back wall.</p>
-        <p>All 12 white keys are cast and machined as one 11&nbsp;in bar, and the 8 black keys as one 4.2&nbsp;in bar, so every key gets the same profile. The bars are sawed apart afterward. All 20 pivot holes are drilled in one setup so they line up on the rod.</p>
-        <p>Writing the operations sequence turned up five things to fix in CAD before printing patterns. The enclosed glass slot can't be sand cast, so it became an open rabbet. The top skin was .044–.056&nbsp;in thick, too thin for the casting to fill. Both pivot holes were blind, so the rod couldn't go in. The key stack had no end clearance, and the screws reached only about .10&nbsp;in into the frame.</p>
-        <p>The BOM comes to $104.84 against a $130 budget. Electronics are a later phase.</p>
+        <dl class="blocks">
+          <div><dt>PROBLEM</dt><dd>Make a 20-key MIDI keyboard (12 white, 8 black keys) entirely from 356A aluminum, with the PRL foundry and a manual mill, on a $130 budget.</dd></div>
+          <div><dt>WHAT I DID</dt><dd>Designed the frame, base, and keys for sand casting from 3D-printed PLA patterns (.060&nbsp;in stock, 2° draft, ×1.013 shrink). The keys are cast as two bars, milled together, then sawed apart, so every key gets the same profile. All 20 pivot holes are drilled in one setup. Wrote the operations sequence and BOM.</dd></div>
+          <div><dt>RESULT</dt><dd>Not cast yet. BOM: $104.84 against the $130 budget; electronics are a later phase.</dd></div>
+          <div><dt>WHAT I'D CHANGE</dt><dd>Five problems caught in CAD before printing patterns:
+            <ol>
+              <li>Enclosed glass slot can't be sand cast: now an open rabbet.</li>
+              <li>Top skin .044–.056&nbsp;in, too thin to fill: now about 3/16&nbsp;in.</li>
+              <li>Both pivot holes blind, so the rod couldn't go in: the right one now goes through.</li>
+              <li>No end clearance on the key stack: about .010&nbsp;in added.</li>
+              <li>4-40 screws reached only about .10&nbsp;in: now 5/16&nbsp;in long.</li>
+            </ol>
+          </dd></div>
+        </dl>
         <div class="files">
           <span>OPERATIONS SEQUENCE, BOM, 3D MODEL, STEP FILE:</span>
           <a href="https://alexhongsta.github.io/alex.html#projects">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#PROJECTS</a>
@@ -176,12 +239,12 @@
       </div>
       <div class="field" style="grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr;">
         <figure class="fit">
-          <img src="assets/img/piano-cad-front.jpg" alt="CAD render of the aluminum piano from the front.">
-          <figcaption>Assembly, front.</figcaption>
+          <img src="assets/img/piano-cad-exploded.jpg" alt="Exploded CAD view of the aluminum piano.">
+          <figcaption>Exploded: frame, glass, keys on the pivot rod, base.</figcaption>
         </figure>
         <figure class="fit">
-          <img src="assets/img/piano-cad-back.jpg" alt="CAD render from the back with the glass window.">
-          <figcaption>Assembly, back, with the glass window.</figcaption>
+          <img src="assets/img/piano-cad-front.jpg" alt="CAD render of the aluminum piano from the front.">
+          <figcaption>Assembly, front.</figcaption>
         </figure>
         <figure class="fit" style="grid-column: 1 / -1;">
           <img src="assets/img/piano-op-saw-keys.jpg" alt="Key bars with saw cuts marked in red.">
@@ -200,9 +263,11 @@
         <span class="num">03</span>
         <h2>Spring-Powered Ping Pong Launcher</h2>
         <p class="meta">ME 102 PRODUCT REALIZATION · WINTER 2026</p>
-        <p>A purely mechanical, spring-driven launcher inside a 12&nbsp;×&nbsp;12&nbsp;×&nbsp;24&nbsp;in envelope. It fired through a target board at 5–7&nbsp;ft over a two-minute run.</p>
-        <p>The scored design metric was the static counterweight resisting launch reaction forces. I cut it with geometry instead of added mass.</p>
-        <p>The paper trail: free-body diagrams, force and moment balances, stored-energy calculations, and a dimensioned drawing package with tolerances, BOM, and exploded views. Parts were laser-cut and 3D-printed. The Fusion assembly has six parts: base, barrel, funnel, slider, slot, and shaft.</p>
+        <dl class="blocks">
+          <div><dt>PROBLEM</dt><dd>Fire ping pong balls through a target board 5–7&nbsp;ft away for two minutes with a purely mechanical spring launcher inside a 12&nbsp;×&nbsp;12&nbsp;×&nbsp;24&nbsp;in envelope. Scored on how little static counterweight it needed.</dd></div>
+          <div><dt>WHAT I DID</dt><dd>Cut the counterweight through geometry instead of added mass. Backed it with free-body diagrams, force and moment balances, stored-energy calculations, and a dimensioned drawing package (tolerances, BOM, exploded views). Parts were laser-cut and 3D-printed.</dd></div>
+          <div><dt>RESULT</dt><dd>It fired through the target board at 5–7&nbsp;ft over the two-minute run.</dd></div>
+        </dl>
         <div class="files">
           <span>3D MODEL + STEP FILE:</span>
           <a href="https://alexhongsta.github.io/alex.html#projects">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#PROJECTS</a>
@@ -234,33 +299,27 @@
         <span class="num">04</span>
         <h2>Outdoor Stage Build</h2>
         <p class="meta">SIGMA NU SUNSPLASH · 2026 · ~1,340 RSVPS</p>
-        <p>A wooden stage, DJ table, and tiered platforms for Sigma Nu's Sunsplash. I modeled it in Fusion 360: 17 platforms in four sizes (a 2&nbsp;ft stage, 1&nbsp;ft and standard die tables, and 4&nbsp;ft die tables with rails), 8 fence sections, and the DJ table.</p>
-        <p>I sized the 2×4, 4×4, and plywood members from that model. Then we bought the lumber and built it on site.</p>
-        <p>The aluminum truss over the DJ table was bought, not built. I DJ'd the party from the table.</p>
+        <dl class="blocks">
+          <div><dt>PROBLEM</dt><dd>A stage, DJ table, and tiered platforms on sand for an outdoor event with ~1,340 RSVPs, built from lumber.</dd></div>
+          <div><dt>WHAT I DID</dt><dd>Modeled the layout in Fusion 360: 17 platforms in four sizes, 8 fence sections, and the DJ table. Sized the 2×4, 4×4, and plywood members from the model; then we bought the lumber and built it on site. The aluminum truss was bought, not built.</dd></div>
+          <div><dt>RESULT</dt><dd>Built on site and used for the event.</dd></div>
+        </dl>
         <div class="files">
           <span>3D MODEL + STEP FILE:</span>
           <a href="https://alexhongsta.github.io/alex.html#projects">ALEXHONGSTA.GITHUB.IO/ALEX.HTML#PROJECTS</a>
         </div>
       </div>
-      <div class="field" style="grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1.15fr 1fr;">
-        <figure style="grid-column: span 2;">
+      <div class="field" style="grid-template-columns: 1.3fr 1fr; grid-template-rows: 1.2fr 1fr;">
+        <figure style="grid-column: 1 / -1;">
           <img src="assets/img/stage-finished.jpg" alt="The stage at night under yellow canopies.">
-          <figcaption>Stage at night, mid-paint.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/stage-dj-set.jpg" style="object-position: 50% 55%" alt="Alex DJing at the table with a crowd in front.">
-          <figcaption>DJing the party from the table.</figcaption>
+          <figcaption>Finished stage at night, mid-paint.</figcaption>
         </figure>
         <figure>
           <img src="assets/img/stage-cad.jpg" alt="Fusion 360 layout of the stage.">
           <figcaption>Fusion 360 layout.</figcaption>
         </figure>
         <figure>
-          <img src="assets/img/stage-framing.jpg" alt="Unpainted platforms on site.">
-          <figcaption>Framing on site, before paint.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/stage-die-table.jpg" style="object-position: 50% 40%" alt="One die table, plywood on a braced frame.">
+          <img src="assets/img/stage-die-table.jpg" style="object-position: 50% 42%" alt="One die table, plywood on a braced frame.">
           <figcaption>One die table, plywood on a braced frame.</figcaption>
         </figure>
       </div>
